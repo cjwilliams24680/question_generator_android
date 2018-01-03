@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Question Generator</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_questions">Questions</string>
+    <string name="title_starred">Starred</string>
+    <string name="title_profile">Profile</string>
+</resources>
