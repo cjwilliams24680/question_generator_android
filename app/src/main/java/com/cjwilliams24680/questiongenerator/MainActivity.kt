@@ -8,20 +8,20 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * Created by chris on 12/21/17.
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainActivityCallback {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_questions -> {
-                fragmentManager.beginTransaction().replace(R.id.container, QuestionFragment(), QuestionFragment.TAG).commit()
+                launchFragment(QuestionFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_starred -> {
-                fragmentManager.beginTransaction().replace(R.id.container, StarredQuestionsFragment(), StarredQuestionsFragment.TAG).commit()
+                launchFragment(StarredQuestionsFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-                fragmentManager.beginTransaction().replace(R.id.container, ProfileFragment(), ProfileFragment.TAG).commit()
+                launchFragment(ProfileFragment())
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -31,7 +31,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fragmentManager.beginTransaction().replace(R.id.container, QuestionFragment(), QuestionFragment.TAG).commit()
+        launchFragment(QuestionFragment())
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
+
+    fun launchFragment(fragment: BaseFragment) {
+        fragment.setCallback(this)
+        fragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.getNameTag()).commit()
     }
 }

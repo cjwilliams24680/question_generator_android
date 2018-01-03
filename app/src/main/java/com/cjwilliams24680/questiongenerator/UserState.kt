@@ -32,13 +32,4 @@ class UserState {
         sharedPrefs!!.edit().putString(name, UUID.randomUUID().toString()).apply()
         return true
     }
-
-    fun deleteUser(name: String) {
-        sharedPrefs!!.edit().remove(name).apply()
-    }
-
-    fun overwriteUser(name: String) {
-        deleteUser(name)
-        createUser(name)
-    }
 }
