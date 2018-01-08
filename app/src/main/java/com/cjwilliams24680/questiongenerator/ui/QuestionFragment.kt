@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.cjwilliams24680.questiongenerator.R
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,12 +37,12 @@ class QuestionFragment : BaseFragment() {
         getCallback()!!
                 .getNetwork()!!
                 .question
-                .enqueue(object : Callback<JSONObject> {
-                    override fun onResponse(call: Call<JSONObject>, response: Response<JSONObject>) {
-                        updateQuestion(response.body()!!.getString("question"))
+                .enqueue(object : Callback<String> {
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        updateQuestion(response.body())
                     }
 
-                    override fun onFailure(call: Call<JSONObject>, t: Throwable) {
+                    override fun onFailure(call: Call<String>, t: Throwable) {
                         updateQuestion("An Error Occurred")
                     }
                 })

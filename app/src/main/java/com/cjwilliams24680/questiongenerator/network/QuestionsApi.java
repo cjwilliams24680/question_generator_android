@@ -1,7 +1,5 @@
 package com.cjwilliams24680.questiongenerator.network;
 
-import org.json.JSONObject;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -13,5 +11,5 @@ import retrofit2.http.GET;
 
 public interface QuestionsApi {
 
-    @GET Call<JSONObject> getQuestion();
+    @GET("generate") Call<String> getQuestion();
 }
