@@ -4,4 +4,6 @@
     <string name="title_questions">Questions</string>
     <string name="title_starred">Starred</string>
     <string name="title_profile">Profile</string>
+    <string name="click_to_begin">Click to begin</string>
+    <string name="new_question">New Question</string>
 </resources>
