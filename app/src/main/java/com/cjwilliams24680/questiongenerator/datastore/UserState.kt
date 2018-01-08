@@ -1,4 +1,4 @@
-package com.cjwilliams24680.questiongenerator
+package com.cjwilliams24680.questiongenerator.datastore
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -14,7 +14,7 @@ import java.util.*
 class UserState {
 
     companion object {
-        private val TAG = "com.cjwilliams24680.questiongenerator.UserState"
+        private val TAG = "com.cjwilliams24680.questiongenerator.datastore.UserState"
         private val USER_NAME = "UserState.USER_NAME"
     }
 

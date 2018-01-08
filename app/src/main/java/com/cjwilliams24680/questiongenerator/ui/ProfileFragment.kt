@@ -1,9 +1,10 @@
-package com.cjwilliams24680.questiongenerator
+package com.cjwilliams24680.questiongenerator.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.cjwilliams24680.questiongenerator.R
 
 /**
  * Created by chris on 12/21/17.
@@ -11,7 +12,7 @@ import android.view.ViewGroup
 class ProfileFragment : BaseFragment() {
 
     companion object {
-        val TAG = "com.cjwilliams24680.questiongenerator.ProfileFragment"
+        val TAG = "com.cjwilliams24680.questiongenerator.ui.ProfileFragment"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle?): View {

@@ -1,4 +1,4 @@
-package com.cjwilliams24680.questiongenerator
+package com.cjwilliams24680.questiongenerator.datastore
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -12,7 +12,7 @@ import android.content.SharedPreferences
 class StarredQuestionsState {
 
     companion object {
-        private val TAG = "com.cjwilliams24680.questiongenerator.StarredQuestionsState"
+        private val TAG = "com.cjwilliams24680.questiongenerator.datastore.StarredQuestionsState"
     }
 
     private var sharedPrefs: SharedPreferences? = null
