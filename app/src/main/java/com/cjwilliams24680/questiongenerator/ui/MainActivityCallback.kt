@@ -9,4 +9,6 @@ interface MainActivityCallback {
 
     fun getNetwork(): QuestionsApi?
 
+    fun showProgressSpinner(isVisible: Boolean)
+
 }

@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity(), MainActivityCallback {
 
+    override fun showProgressSpinner(isVisible: Boolean) {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun getNetwork(): QuestionsApi? {
         return api
     }

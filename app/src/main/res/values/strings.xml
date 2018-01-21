@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Question Generator</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_questions">Questions</string>
-    <string name="title_starred">Starred</string>
-    <string name="title_profile">Profile</string>
-    <string name="click_to_begin">Click to begin</string>
-    <string name="new_question">New Question</string>
+    <string name="questions">Questions</string>
+    <string name="starred">Starred</string>
+    <string name="profile">Profile</string>
+    <string name="click_button_below_to_begin">Click button below to begin</string>
+    <string name="next">Next</string>
+    <string name="star">Star</string>
 </resources>

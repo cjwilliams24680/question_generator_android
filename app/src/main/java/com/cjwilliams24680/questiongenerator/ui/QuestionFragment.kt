@@ -1,12 +1,12 @@
 package com.cjwilliams24680.questiongenerator.ui
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import com.cjwilliams24680.questiongenerator.R
+import com.cjwilliams24680.questiongenerator.databinding.FragmentQuestionBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,16 +16,23 @@ import retrofit2.Response
  */
 class QuestionFragment : BaseFragment() {
 
+    var binding: FragmentQuestionBinding? = null
+
     companion object {
         val TAG = "com.cjwilliams24680.questiongenerator.ui.QuestionFragment"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_question, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question, container, false)
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        view!!.findViewById<Button>(R.id.new_question_button).setOnClickListener({getNewQuestion()})
+        binding!!.nextButton.setOnClickListener({getNewQuestion()})
+        binding!!.starButton.setOnClickListener({starQuestion(binding!!.questionText.text)})
+
+        // update ui
+        getNewQuestion()
         super.onViewCreated(view, savedInstanceState)
     }
 
@@ -34,6 +41,7 @@ class QuestionFragment : BaseFragment() {
     }
 
     private fun getNewQuestion() {
+        getCallback()!!.showProgressSpinner(true)
         getCallback()!!
                 .getNetwork()!!
                 .question
@@ -50,7 +58,18 @@ class QuestionFragment : BaseFragment() {
 
     private fun updateQuestion(newQuestion: String?) {
         if (isResumed) {
-            view.findViewById<TextView>(R.id.question_text).text = newQuestion
+            getCallback()!!.showProgressSpinner(false)
+            binding!!.questionText.text = newQuestion
+
+            // todo look into saved questions and see if it exists
+            binding!!.isStarred = false
         }
+    }
+
+    private fun starQuestion(starredQuestion: CharSequence) {
+        // todo will save the question for later viewing in the starred fragment
+        // for now just toggle the button text
+
+        binding!!.isStarred = !binding!!.isStarred
     }
 }

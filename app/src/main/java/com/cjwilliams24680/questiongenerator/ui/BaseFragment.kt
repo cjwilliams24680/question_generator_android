@@ -20,4 +20,9 @@ abstract class BaseFragment : Fragment() {
     }
 
     abstract fun getNameTag(): String
+
+    override fun onStop() {
+        getCallback()!!.showProgressSpinner(false)
+        super.onStop()
+    }
 }
