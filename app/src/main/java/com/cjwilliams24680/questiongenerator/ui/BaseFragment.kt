@@ -1,6 +1,6 @@
 package com.cjwilliams24680.questiongenerator.ui
 
-import android.app.Fragment
+import android.support.v4.app.Fragment
 import java.lang.ref.WeakReference
 
 /**

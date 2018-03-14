@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), MainActivityCallback {
 
     fun launchFragment(fragment: BaseFragment) {
         fragment.setCallback(this)
-        fragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.getNameTag()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment, fragment.getNameTag()).commit()
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

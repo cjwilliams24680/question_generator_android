@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.cjwilliams24680.questiongenerator.R
 import com.cjwilliams24680.questiongenerator.databinding.FragmentQuestionBinding
+import com.cjwilliams24680.questiongenerator.datastore.PreferencesState
+import com.cjwilliams24680.questiongenerator.datastore.StarredQuestionsState
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +19,7 @@ import retrofit2.Response
 class QuestionFragment : BaseFragment() {
 
     var binding: FragmentQuestionBinding? = null
+    var starredQuestionsState: StarredQuestionsState? = null
 
     companion object {
         val TAG = "com.cjwilliams24680.questiongenerator.ui.QuestionFragment"
@@ -24,12 +27,13 @@ class QuestionFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_question, container, false)
+        starredQuestionsState = StarredQuestionsState(context, PreferencesState.getInstance(context).getCurrentUser())
         return binding!!.root
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         binding!!.nextButton.setOnClickListener({getNewQuestion()})
-        binding!!.starButton.setOnClickListener({starQuestion(binding!!.questionText.text)})
+        binding!!.starButton.setOnClickListener({starQuestion(binding!!.questionText.text.toString())})
 
         // update ui
         getNewQuestion()
@@ -60,16 +64,12 @@ class QuestionFragment : BaseFragment() {
         if (isResumed) {
             getCallback()!!.showProgressSpinner(false)
             binding!!.questionText.text = newQuestion
-
-            // todo look into saved questions and see if it exists
-            binding!!.isStarred = false
+            binding!!.isStarred = starredQuestionsState!!.contains(newQuestion!!)
         }
     }
 
-    private fun starQuestion(starredQuestion: CharSequence) {
-        // todo will save the question for later viewing in the starred fragment
-        // for now just toggle the button text
-
+    private fun starQuestion(starredQuestion: String) {
         binding!!.isStarred = !binding!!.isStarred
+        starredQuestionsState!!.addQuestion(starredQuestion)
     }
 }

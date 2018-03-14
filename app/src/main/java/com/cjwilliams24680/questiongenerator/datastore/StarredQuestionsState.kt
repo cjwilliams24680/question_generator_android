@@ -6,19 +6,35 @@ import android.content.SharedPreferences
 /**
  * Created by chris on 12/21/17.
  *
- * acts like a 2 column table in a database
- * todo move it inside of a database
+ * acts like a bunch of 1 column tables in a database
+ * todo move it inside of a database and make it more efficient
  */
-class StarredQuestionsState {
+class StarredQuestionsState(context: Context, userName: String) {
 
     companion object {
         private val TAG = "com.cjwilliams24680.questiongenerator.datastore.StarredQuestionsState"
     }
 
-    private var sharedPrefs: SharedPreferences? = null
+    private var sharedPrefs: SharedPreferences
 
-    fun main(context: Context, userId: String) {
-        sharedPrefs = context.getSharedPreferences(String.format("%s/%s", TAG, userId), Context.MODE_PRIVATE)
+    init {
+        sharedPrefs = context.getSharedPreferences(String.format("%s|%s", TAG, userName), Context.MODE_PRIVATE)
+    }
+
+    fun getQuestions(): List<String> {
+        return ArrayList(sharedPrefs.all.keys)
+    }
+
+    fun addQuestion(question: String) {
+        sharedPrefs.edit().putString(question, "").apply()
+    }
+
+    fun removeQuestion(question: String) {
+        sharedPrefs.edit().remove(question).apply()
+    }
+
+    fun contains(question: String): Boolean {
+        return sharedPrefs.contains(question)
     }
 
 }

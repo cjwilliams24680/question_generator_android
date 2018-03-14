@@ -2,6 +2,7 @@
     <string name="app_name">Question Generator</string>
     <string name="questions">Questions</string>
     <string name="starred">Starred</string>
+    <string name="starred_questions">Starred Questions</string>
     <string name="profile">Profile</string>
     <string name="click_button_below_to_begin">Click button below to begin</string>
     <string name="next">Next</string>
